@@ -1,85 +1,102 @@
-const arrowBtns = document.querySelectorAll('.arrow-btn')
-const cardBtns = document.querySelectorAll('.card')
-let currentCard = 0;
-let dir = 1;
-moveCards()
-
-arrowBtns.forEach((btn,i)=>{
-  btn.onpointerenter = (e)=> gsap.to(btn, {
-    ease:'expo',
-    'box-shadow':'0 3px 4px #00000050'
-  })
-  
-  btn.onpointerleave = (e)=> gsap.to(btn, {
-    ease:'expo',
-    'box-shadow':'0 6px 8px #00000030'
-  })
-  
-  btn.onclick = (e)=> {
-    dir = (i==0)? 1:-1
-    if (i==0) {
-      currentCard--
-      currentCard = Math.max(0, currentCard)
-    }
-    else {
-      currentCard++
-      currentCard = Math.min(7, currentCard)
-    }
-    moveCards(0.75)
-  }
-})
-
-cardBtns.forEach((btn,i)=>{
-  btn.onpointerenter = (e)=> gsap.to(btn, {
-    ease:'power3',
-    overwrite:'auto',
-    'box-shadow':()=>(i==currentCard)?'0 6px 11px #00000030':'0 6px 11px #00000030'
-  })
-  
-  btn.onpointerleave = (e)=> gsap.to(btn, {
-    ease:'power3',
-    overwrite:'auto',
-    'box-shadow':()=>(i==currentCard)?'0 6px 11px #00000030':'0 0px 0px #00000030'
-  })
-
-  btn.onclick = (e)=> {
-    dir = (i<currentCard)? 1:-1
-    currentCard = i
-    moveCards(0.75)
-  }
-})
-
-function moveCards(dur=0){
-  gsap.timeline({defaults:{ duration:dur, ease:'power3', stagger:{each:-0.03*dir} }})
-    .to('.card', {
-      x:-270 * currentCard - 2,
-      y:(i)=>(i==currentCard)?0:15,
-      height:(i)=>(i==currentCard)?270:240,
-      ease:'elastic.out(0.4)'
-    }, 0)
-
-
-    .to('.card', {
-      cursor:(i)=>(i==currentCard)?'default':'pointer',
-      'box-shadow':(i)=>(i==currentCard)?'0 6px 11px #00000030':'0 0px 0px #00000030',
-      border:(i)=>(i==currentCard)?'2px solid #26a':'0px solid #fff',
-      background:(i)=>(i==currentCard)?'radial-gradient(100% 100% at top, #fff 0%, #fff 99%)':'radial-gradient(100% 100% at top, #fff 20%, #eee 175%)',
-      ease:'expo'
-    }, 0)
-    .to('.icon svg', {
-      attr:{
-        stroke:(i)=>(i==currentCard)?'transparent':'#36a',  
-        fill:(i)=>(i==currentCard)?'#36a':'transparent'
+jQuery('.card-slider').slick({
+  slidesToShow:3,
+  autoplay: true,
+  slidesToScroll:1,
+  dots: false,
+  responsive:[
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 2
       }
-    }, 0)
-    .to('.arrow-btn-prev', {
-      autoAlpha:(currentCard==0)?0:1
-    }, 0)
-    .to('.arrow-btn-next', {
-      autoAlpha:(currentCard==4)?0:1
-    }, 0)
-    .to('.card h4', {
-      y:(i)=>(i==currentCard)?0:8,    
-      opacity:(i)=>(i==currentCard)?1:0,
-    }, 0)
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1
+      }
+    }
+  ]
+});
+
+let cards = document.querySelectorAll('.card');
+let card;
+let modal = document.querySelector('.modal');
+let closeButton = document.querySelector('.modal__close-button');
+let page = document.querySelector('.page');
+const cardBorderRadius = 20;
+const openingDuration = 600; //ms
+const closingDuration = 600; //ms
+const timingFunction = 'cubic-bezier(.76,.01,.65,1.38)';
+
+var Scrollbar = window.Scrollbar;
+Scrollbar.init(document.querySelector('.modal__scroll-area'));
+
+
+function flipAnimation(first, last, options) {
+  let firstRect = first.getBoundingClientRect();
+  let lastRect = last.getBoundingClientRect();
+  
+  let deltas = {
+    top: firstRect.top - lastRect.top,
+    left: firstRect.left - lastRect.left,
+    width: firstRect.width / lastRect.width,
+    height: firstRect.height / lastRect.height
+  };
+  
+  return last.animate([{
+    transformOrigin: 'top left',
+    borderRadius:`
+    ${cardBorderRadius/deltas.width}px / ${cardBorderRadius/deltas.height}px`,
+    transform: `
+      translate(${deltas.left}px, ${deltas.top}px) 
+      scale(${deltas.width}, ${deltas.height})
+    `
+  },{
+    transformOrigin: 'top left',
+    transform: 'none',
+    borderRadius: `${cardBorderRadius}px`
+  }],options);
 }
+
+cards.forEach((item)=>{
+  item.addEventListener('click',(e)=>{
+    jQuery('.card-slider').slick('slickPause');
+    card = e.currentTarget;
+    page.dataset.modalState = 'opening';
+    card.classList.add('card--opened');
+    card.style.opacity = 0;
+    document.querySelector('body').classList.add('no-scroll');
+
+    let animation = flipAnimation(card,modal,{
+      duration: openingDuration,
+      easing: timingFunction,
+      fill:'both'
+    });
+
+    animation.onfinish = ()=>{
+      page.dataset.modalState = 'open';
+      animation.cancel();
+    };
+  });
+});
+
+closeButton.addEventListener('click',(e)=>{
+  page.dataset.modalState = 'closing';
+  document.querySelector('body').classList.remove('no-scroll');
+  
+  let animation = flipAnimation(card,modal,{
+    duration: closingDuration,
+    easing: timingFunction,
+    direction: 'reverse',
+    fill:'both'
+  });
+
+  animation.onfinish = ()=>{
+    page.dataset.modalState = 'closed';
+    card.style.opacity = 1;
+    card.classList.remove('card--opened');
+    jQuery('.card-slider').slick('slickPlay');
+    animation.cancel();
+  };
+});

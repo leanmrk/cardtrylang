@@ -1,15 +1,4 @@
-/*--------------------------------------------------------------
->>> TABLE OF CONTENTS:
-----------------------------------------------------------------
-1.0 Config
-2.0 General
-3.0 Slider
-4.0 All Tutorials
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-1.0 Config
---------------------------------------------------------------*/
-/*! sanitize.css | CC0 Public Domain | github.com/jonathantneal/sanitize.css */
+
 pre, textarea {
   overflow: auto;
 }
@@ -277,7 +266,7 @@ li {
 5.0 Heading-3
 --------------------------------------------------------------*/
 .heading-3 {
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 600;
   line-height: 25px;
   color: #3E4954;
@@ -796,6 +785,7 @@ body {
 .slider__item-content {
   padding: 40px;
   overflow: hidden; 
+  height: 400px;
 }
 
 @media (max-width: 600px) {
@@ -809,8 +799,10 @@ body {
   }
 }
 .slider__item-text {
-  padding: 60px 0;
+  max-height: calc(100% - 120px);
+  overflow-y: auto;
   font-size: 18px;
+  text-align: justify;
 }
 
 
@@ -860,10 +852,4 @@ body {
 .button:hover {
   background: rgba(0, 0, 0, 0.1);
 }
-
-/*--------------------------------------------------------------
-4.0 All Tutorials
---------------------------------------------------------------*/
-/*--------------------------------------------------------------
-
 

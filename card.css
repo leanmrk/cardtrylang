@@ -383,32 +383,37 @@ body {
 
 
 
-
+/* 1 center */
 #slide-1:checked ~ .slider__holder .slider__item--1 {
   position: relative;
   z-index: 2;
   transform: translate(0) scale(1);
+  background-color: #5050FF;
 }
 
+/* 2 center, 1 left */
 #slide-2:checked ~ .slider__holder .slider__item--1 {
   z-index: 1;
   transform: translateX(-100px) scale(0.85);
+  background-color: aqua;
 }
 
 /*-hatiiiiiiiiiii--*/
-
 @media (max-width: 768px) {
   #slide-2:checked ~ .slider__holder .slider__item--1 {
     opacity: 0.6;
+    
   }
 }
+/* 3 center, 1 pinaka left */
 #slide-3:checked ~ .slider__holder .slider__item--1 {
   z-index: 0;
   transform: translateX(-210px) scale(0.65);
+  background-color: blue;
+  
 }
 
 /*-hatiiiiiiiiiii--*/
-
 @media (max-width: 900px) {
   #slide-3:checked ~ .slider__holder .slider__item--1 {
     transform: translateX(-170px) scale(0.65);
@@ -422,21 +427,40 @@ body {
     opacity: 0;
   }
 }
+
+/* invisible */
 #slide-4:checked ~ .slider__holder .slider__item--1 {
   z-index: -1;
   opacity: 0;
   transform: translateX(-210px) scale(0.65);
 }
 
+/* invisible */
 #slide-5:checked ~ .slider__holder .slider__item--1 {
   z-index: -1;
   opacity: 0;
   transform: translateX(-210px) scale(0.65);
 }
 
+#slide-6:checked ~ .slider__holder .slider__item--1 {
+  z-index: -1;
+  opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+
+
+
+
+
+
+
+
+/* kapag daw 1 ay center sisilip yung 2 */
 #slide-1:checked ~ .slider__holder .slider__item--2 {
   z-index: 1;
   transform: translateX(100px) scale(0.85);
+  background-color: green;
 }
 
 @media (max-width: 768px) {
@@ -444,10 +468,13 @@ body {
     opacity: 0.6;
   }
 }
+
+/* pag nag center yung next slide */
 #slide-2:checked ~ .slider__holder .slider__item--2 {
   position: relative;
   z-index: 2;
   transform: translate(0) scale(1);
+  background-color: red;
 }
 
 #slide-3:checked ~ .slider__holder .slider__item--2 {
@@ -475,11 +502,27 @@ body {
     opacity: 0;
   }
 }
+
 #slide-5:checked ~ .slider__holder .slider__item--2 {
   z-index: -1;
   opacity: 0;
   transform: translateX(-210px) scale(0.65);
 }
+
+#slide-6:checked ~ .slider__holder .slider__item--2 {
+  z-index: -1;
+  opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+
+
+
+
+
+
+
+
 
 #slide-1:checked ~ .slider__holder .slider__item--3 {
   z-index: 0;
@@ -537,6 +580,13 @@ body {
     opacity: 0;
   }
 }
+
+
+
+
+
+
+
 #slide-1:checked ~ .slider__holder .slider__item--4 {
   z-index: -1;
   opacity: 0;
@@ -584,6 +634,19 @@ body {
     opacity: 0.6;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 #slide-1:checked ~ .slider__holder .slider__item--5 {
   z-index: -1;
   opacity: 0;
@@ -596,9 +659,11 @@ body {
   transform: translateX(210px) scale(0.65);
 }
 
+/* 3 center, 5 right */
 #slide-3:checked ~ .slider__holder .slider__item--5 {
   z-index: 0;
   transform: translateX(210px) scale(0.65);
+  background-color: paleturquoise;
 }
 
 
@@ -631,51 +696,156 @@ body {
   transform: translate(0) scale(1);
 }
 
-
-
-
-
-
-
-
-
-/* Slide 6 */
-#slide-6:checked ~ .slider__holder .slider__item--1 {
+/* invisible, 2 nowhere, 5 center */
+#slide-2:checked ~ .slider__holder .slider__item--5 {
   z-index: -1;
   opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+/* invisible, 1 nowhere, 5 center */
+#slide-1:checked ~ .slider__holder .slider__item--5 {
+  z-index: -1;
+  opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+
+
+
+/* 4 center, 6 right */
+#slide-4:checked ~ .slider__holder .slider__item--6 {
+  z-index: 0;
   transform: translateX(210px) scale(0.65);
+  /* background-color: paleturquoise; */
 }
 
-@media (max-width: 900px) {
-  #slide-6:checked ~ .slider__holder .slider__item--1 {
-    transform: translateX(170px) scale(0.65);
-  }
-}
-
-@media (max-width: 768px) {
-  #slide-6:checked ~ .slider__holder .slider__item--1 {
-    opacity: 0;
-  }
-}
-
-/* Slide 7 */
-#slide-7:checked ~ .slider__holder .slider__item--1 {
+/* 5 center, 6 right */
+#slide-5:checked ~ .slider__holder .slider__item--6 {
   z-index: 1;
   transform: translateX(100px) scale(0.85);
 }
 
-@media (max-width: 768px) {
-  #slide-7:checked ~ .slider__holder .slider__item--1 {
-    opacity: 0.6;
-  }
-}
 
-/* Slide 8 */
-#slide-8:checked ~ .slider__holder .slider__item--1 {
+/* pag nag center yung next slide */
+#slide-6:checked ~ .slider__holder .slider__item--6 {
   position: relative;
   z-index: 2;
   transform: translate(0) scale(1);
 }
+
+/* 6 center, 5 left */
+#slide-6:checked ~ .slider__holder .slider__item--5 {
+  z-index: 1;
+  transform: translateX(-100px) scale(0.85);
+  
+}
+
+/* 6 center, 4 pinaka left */
+#slide-6:checked ~ .slider__holder .slider__item--4 {
+  z-index: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+/* invisible, 3 nowhere, 6 center */
+#slide-3:checked ~ .slider__holder .slider__item--6 {
+  z-index: -1;
+  opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+
+
+
+
+
+/* 6 center, 7 right */
+#slide-6:checked ~ .slider__holder .slider__item--7 {
+  z-index: 1;
+  transform: translateX(100px) scale(0.85);
+}
+
+/* 5 center, 7 right */
+#slide-5:checked ~ .slider__holder .slider__item--7 {
+  z-index: 0;
+  transform: translateX(210px) scale(0.65);
+  /* background-color: paleturquoise; */
+}
+
+/* pag nag center yung next slide */
+#slide-7:checked ~ .slider__holder .slider__item--7 {
+  position: relative;
+  z-index: 2;
+  transform: translate(0) scale(1);
+}
+
+/* 7 center, 6 left */
+#slide-7:checked ~ .slider__holder .slider__item--6 {
+  z-index: 1;
+  transform: translateX(-100px) scale(0.85);
+  
+}
+
+/* 7 center, 5 pinaka left */
+#slide-7:checked ~ .slider__holder .slider__item--5 {
+  z-index: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+/* invisible, 3 nowhere, 6 center */
+#slide-3:checked ~ .slider__holder .slider__item--6 {
+  z-index: -1;
+  opacity: 0;
+  transform: translateX(-210px) scale(0.65);
+}
+
+
+
+
+
+    /* Slide 6 */
+    /* #slide-6:checked ~ .slider__holder .slider__item--1 {
+      z-index: -1;
+      opacity: 0;
+      transform: translateX(-210px) scale(0.65);
+    }
+
+    @media (max-width: 900px) {
+      #slide-6:checked ~ .slider__holder .slider__item--1 {
+        transform: translateX(170px) scale(0.65);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #slide-6:checked ~ .slider__holder .slider__item--1 {
+        opacity: 0;
+      }
+    } */
+
+    /* Slide 7 */
+    /* #slide-7:checked ~ .slider__holder .slider__item--1 {
+      z-index: 0;
+      transform: translateX(-210px) scale(0.65);
+    }
+
+    @media (max-width: 900px) {
+      #slide-7:checked ~ .slider__holder .slider__item--1 {
+        transform: translateX(-170px) scale(0.65);
+      }
+    }
+
+    @media (max-width: 768px) {
+      #slide-7:checked ~ .slider__holder .slider__item--1 {
+        opacity: 0;
+      }
+    } */
+
+    /* Slide 8 */
+    /* #slide-8:checked ~ .slider__holder .slider__item--1 {
+      z-index: -1;
+      opacity: 0;
+      transform: translateX(210px) scale(0.65);
+    } */
 
 
 
